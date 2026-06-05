@@ -3,393 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --primary: #38bdf8;
-      --secondary: #a78bfa;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --glass: rgba(255, 255, 255, 0.08);
-    }
-
-    body {
-      background: radial-gradient(circle at top left, #1e3a8a, var(--bg) 38%),
-        radial-gradient(circle at bottom right, #581c87, var(--bg) 35%);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    nav {
-      max-width: 1150px;
-      margin: auto;
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.45rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .menu-btn {
-      display: none;
-      font-size: 1.7rem;
-      cursor: pointer;
-    }
-
-    section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 95px 24px;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 50px;
-      padding-top: 130px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 1.05;
-      margin-bottom: 18px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin-bottom: 28px;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 13px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.3s;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      color: #020617;
-    }
-
-    .btn-outline {
-      color: var(--text);
-      border-color: rgba(255, 255, 255, 0.22);
-      background: var(--glass);
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 35px rgba(56, 189, 248, 0.22);
-    }
-
-    .profile-card {
-      position: relative;
-      padding: 28px;
-      border-radius: 30px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 25px 80px rgba(0,0,0,0.35);
-      animation: float 5s ease-in-out infinite;
-    }
-
-    .avatar {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      margin: auto;
-      display: grid;
-      place-items: center;
-      font-size: 4rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #020617;
-      box-shadow: 0 0 45px rgba(56, 189, 248, 0.5);
-    }
-
-    .profile-card h3 {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 1.35rem;
-    }
-
-    .profile-card p {
-      text-align: center;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.3rem;
-      margin-bottom: 15px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      color: var(--muted);
-      max-width: 700px;
-      margin: 0 auto 50px;
-    }
-
-    .about-grid, .skills-grid, .projects-grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .about-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 25px;
-      border-radius: 24px;
-      transition: 0.35s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(56, 189, 248, 0.45);
-      box-shadow: 0 22px 45px rgba(0,0,0,0.35);
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-      color: var(--primary);
-    }
-
-    .card p {
-      color: var(--muted);
-    }
-
-    .skills-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .skill {
-      text-align: center;
-      padding: 22px;
-      background: var(--glass);
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      font-weight: 700;
-      transition: 0.3s;
-    }
-
-    .skill:hover {
-      background: rgba(56, 189, 248, 0.14);
-      transform: scale(1.06);
-    }
-
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .project-card {
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .project-img {
-      height: 155px;
-      background: linear-gradient(135deg, #38bdf8, #a78bfa, #f472b6);
-      display: grid;
-      place-items: center;
-      font-size: 2.8rem;
-    }
-
-    .project-content {
-      padding: 22px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.14);
-      color: #bae6fd;
-    }
-
-    .contact-box {
-      max-width: 720px;
-      margin: auto;
-      background: linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
-      padding: 35px;
-    }
-
-    form {
-      display: grid;
-      gap: 16px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(2, 6, 23, 0.45);
-      color: var(--text);
-      outline: none;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    input:focus, textarea:focus {
-      border-color: var(--primary);
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: 0.8s;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero p, .btn-group {
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-      }
-
-      .about-grid, .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: rgba(15, 23, 42, 0.98);
-        flex-direction: column;
-        align-items: center;
-        padding: 22px 0;
-        display: none;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .menu-btn {
-        display: block;
-      }
-    }
-  </style>
+  <meta name="description" content="Nischal Dahal - Computing with AI student, fresher software developer, Android, Java, Python, Firebase, MySQL, and Agile project experience." />
+  <title>Nischal Dahal | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
   <header>
     <nav>
-      <div class="logo">MyPortfolio</div>
-      <div class="menu-btn" id="menuBtn">☰</div>
+      <a href="#home" class="logo" aria-label="Nischal Dahal home">
+        <span class="logo-mark">ND</span>
+        <span>Nischal Dahal</span>
+      </a>
+      <div class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#socials">Socials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -397,169 +28,295 @@
 
   <section class="hero" id="home">
     <div>
-      <h1>Hello, I am <span class="gradient-text">Nischal Dahal</span></h1>
+      <div class="eyebrow"> Computing with AI Student • Fresher Developer</div>
+      <h1>Building practical software with <span class="gradient-text">clean design</span> and clear logic.</h1>
       <p>
-        A passionate developer and creative problem-solver building clean,
-        modern, and user-friendly digital experiences using HTML, CSS,
-        JavaScript, and practical programming skills.
+        I am Nischal Dahal, a BSc (Hons) Computing with Artificial Intelligence student at Softwarica College of IT and E-Commerce. I work on Android apps, Java desktop systems, Python projects, databases, and machine learning models with a strong focus on clean implementation, debugging, and user-friendly design.
       </p>
       <div class="btn-group">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="mailto:niachaldahal2062@gmail.com" class="btn btn-outline">Email Me</a>
+        <!-- <a href="assets\documents\Nischal_Dahal_CV.pdf" class="btn btn-outline" download>Download CV</a> -->
       </div>
     </div>
 
-    <div class="profile-card">
+    <aside class="profile-card" aria-label="Profile summary">
       <div class="avatar">ND</div>
-      <h3>Programmer </h3>
-      <p>Frontend • Programming • Problem Solving</p>
-    </div>
+      <h3>Nischal Dahal</h3>
+      <p class="role">Fresher Software Developer</p>
+      <div class="profile-info">
+        <div><span>Location</span><strong>Kathmandu, Nepal</strong></div>
+        <div><span>Email</span><strong>niachaldahal2062@gmail.com</strong></div>
+        <!-- <div><span>Phone</span><strong>+977 9807931001</strong></div> -->
+        <div><span>Focus</span><strong>Android • Java • Python • AI</strong></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="stats reveal" aria-label="Portfolio highlights">
+    <div class="stat"><strong>5+</strong><span>Academic Projects</span></div>
+    <div class="stat"><strong>4</strong><span>Core Tech Areas</span></div>
+    <div class="stat"><strong>3</strong><span>Database Tools</span></div>
+    <div class="stat"><strong>2</strong><span>Design Tools</span></div>
   </section>
 
   <section id="about" class="reveal">
     <h2 class="section-title">About Me</h2>
     <p class="section-subtitle">
-      I enjoy turning ideas into working digital products. My focus is on simple design,
-      clean structure, and practical solutions.
+      I am focused on becoming a strong developer by combining software engineering fundamentals, project management discipline, debugging practice, and user-focused design.
     </p>
 
     <div class="about-grid">
       <div class="card">
-        <h3>Who I Am</h3>
-        <p>I am a learner and builder who enjoys creating websites, solving coding problems, and improving technical skills.</p>
+        <h3>Developer Mindset</h3>
+        <p>I enjoy building practical systems from prototype to working implementation, including frontend screens, backend logic, database operations, and testing.</p>
       </div>
       <div class="card">
-        <h3>What I Do</h3>
-        <p>I build responsive websites, small web apps, and programming projects with clear logic and attractive interfaces.</p>
+        <h3>Debugging & Improvement</h3>
+        <p>I focus on testing features, fixing bugs, improving UI flow, and making projects more stable and easier to use.</p>
       </div>
       <div class="card">
-        <h3>My Goal</h3>
-        <p>My goal is to keep growing as a developer and create useful projects that solve real-world problems.</p>
+        <h3>Design & Presentation</h3>
+        <p>I use Canva, Figma, draw.io, and basic photo/video editing to create prototypes, diagrams, documentation visuals, and clearer project presentations.</p>
       </div>
     </div>
   </section>
 
   <section id="skills" class="reveal">
-    <h2 class="section-title">Skills</h2>
-    <p class="section-subtitle">Technologies and tools I use to build projects.</p>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">A focused view of the tools, languages, and workflows I have used in academic and team-based projects.</p>
 
     <div class="skills-grid">
-      <div class="skill">HTML5</div>
-      <div class="skill">CSS3</div>
-      <div class="skill">JavaScript</div>
-      <div class="skill">C Programming</div>
-      <div class="skill">Responsive Design</div>
-      <div class="skill">Problem Solving</div>
-      <div class="skill">Git/GitHub</div>
-      <div class="skill">UI Design</div>
+      <div class="card skill-group">
+        <h3>Programming</h3>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C</span><span class="chip">Kotlin</span><span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="card skill-group">
+        <h3>Mobile & Backend</h3>
+        <div class="chips">
+          <span class="chip">Android Studio</span><span class="chip">Kotlin</span><span class="chip">Firebase Auth</span><span class="chip">Realtime Database</span><span class="chip">MVVM</span>
+        </div>
+      </div>
+      <div class="card skill-group">
+        <h3>Web & Desktop</h3>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Java Swing</span><span class="chip">Apache NetBeans</span><span class="chip">Tkinter</span>
+        </div>
+      </div>
+      <div class="card skill-group">
+        <h3>Databases</h3>
+        <div class="chips">
+          <span class="chip">MySQL</span><span class="chip">SQLite3</span><span class="chip">Firebase</span><span class="chip">ERD</span><span class="chip">Normalization</span><span class="chip">SQL Queries</span>
+        </div>
+      </div>
+      <div class="card skill-group">
+        <h3>Data / AI</h3>
+        <div class="chips">
+          <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">scikit-learn</span><span class="chip">EDA</span><span class="chip">Linear Regression</span>
+        </div>
+      </div>
+      <div class="card skill-group">
+        <h3>Tools & Design</h3>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Android Studio</span><span class="chip">Canva</span><span class="chip">Figma</span><span class="chip">draw.io</span><span class="chip">Basic Photo/Video Editing</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="projects" class="reveal">
-    <h2 class="section-title">Projects</h2>
-    <p class="section-subtitle">A few projects that show my learning and development skills.</p>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-subtitle">These projects show my growth across mobile development, desktop applications, machine learning, databases, UI design, and debugging.</p>
 
     <div class="projects-grid">
-      <div class="card project-card">
-        <div class="project-img">🖥️</div>
+      <article class="card project-card">
+        <div class="project-head">
+          <div>
+            <small>Android • Firebase • MVVM</small>
+            <h3>PetPoint - Pet Care Mobile App</h3>
+          </div>
+          <div class="project-icon"></div>
+        </div>
         <div class="project-content">
-          <h3>Portfolio Website</h3>
-          <p>A personal responsive portfolio website built using HTML, CSS, and JavaScript.</p>
-          <div class="tags">
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+          <p>A mobile application for pet shopping, veterinarian search, and lost-and-found pet reporting in Nepal.</p>
+          <ul>
+            <li>Implemented role-based authentication, Firebase integration, and dynamic splash/session handling for user and admin access.</li>
+            <li>Built and improved product management, cart, checkout logic, stock updates, logout, delete account, and profile features.</li>
+            <li>Enhanced screens such as admin/user profile, product management, edit product, cart, and lost-and-found management.</li>
+            <li>Performed debugging and testing across frontend/backend modules to improve stability and user experience.</li>
+          </ul>
+          <div class="project-links">
+            <a class="mini-link" href="https://github.com/Niss-chal/PetPoint.git" target="_blank" rel="noopener">GitHub</a>
+            <a class="mini-link" href="https://youtu.be/AViZZCgbP5c" target="_blank" rel="noopener">Watch Demo</a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="card project-card">
-        <div class="project-img">🔐</div>
+      <article class="card project-card">
+        <div class="project-head">
+          <div>
+            <small>Java • MySQL • MVC/DAO</small>
+            <h3>BuySmart - E-Commerce Desktop App</h3>
+          </div>
+          <div class="project-icon"></div>
+        </div>
         <div class="project-content">
-          <h3>File Permission Checker</h3>
-          <p>A C-based utility that checks file permissions and displays important file information.</p>
-          <div class="tags">
-            <span class="tag">C</span><span class="tag">Linux</span><span class="tag">OS</span>
+          <p>A Java desktop e-commerce system with buyer/seller roles, product listing, cart, checkout simulation, order history, account deletion, and forgot-password OTP flow.</p>
+          <ul>
+            <li>Designed database structure using ERD concepts and connected Java application logic with MySQL.</li>
+            <li>Used a layered MVC/DAO approach to separate interface, logic, and database operations.</li>
+            <li>Created prototypes, diagrams, and documentation visuals using Figma, Canva, and draw.io.</li>
+          </ul>
+          <div class="project-links">
+            <a class="mini-link" href="https://github.com/Niss-chal/BuySmart" target="_blank" rel="noopener">GitHub </a>
+            <a class="mini-link" href="https://youtu.be/b8MpucLToH8" target="_blank" rel="noopener">Watch Demo</a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="card project-card">
-        <div class="project-img">⚙️</div>
+<article class="card project-card">
+  <div class="project-head">
+    <div>
+      <small>Python • scikit-learn • EDA</small>
+      <h3>Nepal Tourism Revenue Predictor</h3>
+    </div>
+    <div class="project-icon"></div>
+  </div>
+
+  <div class="project-content">
+    <p>
+      A machine learning project predicting Nepal tourism foreign exchange earnings using
+      Indian arrivals, third-country arrivals, and USD-NPR exchange rate data.
+    </p>
+
+    <ul>
+      <li>Cleaned and merged datasets, performed exploratory data analysis, and trained multiple linear regression models.</li>
+      <li>Compared full-data and non-COVID structures using MAE, RMSE, and R-squared.</li>
+      <li>Created a simple command-line prediction interface for user input values.</li>
+    </ul>
+
+    <div class="project-links">
+      <a class="mini-link" href="https://github.com/Niss-chal/nepal-tourism-revenue-prediction.git" target="_blank" rel="noopener">
+        GitHub
+      </a>
+
+      <a class="mini-link" href="https://youtu.be/-gznsv9s8w4" target="_blank" rel="noopener">
+        Watch Demo
+      </a>
+    </div>
+  </div>
+</article>
+
+      <article class="card project-card">
+        <div class="project-head">
+          <div>
+            <small>Python • Tkinter • SQLite3</small>
+            <h3>To-Do List Desktop Application</h3>
+          </div>
+          <div class="project-icon"></div>
+        </div>
         <div class="project-content">
-          <h3>Mini Shell Concept</h3>
-          <p>A basic operating-system inspired command-line project idea for learning process execution.</p>
-          <div class="tags">
-            <span class="tag">C</span><span class="tag">CLI</span><span class="tag">Systems</span>
+          <p>A desktop task management system built around CRUD functionality to help users add, edit, delete, mark, and track tasks.</p>
+          <ul>
+            <li>Developed frontend and backend using Tkinter and SQLite3.</li>
+            <li>Added deadline tracking, calendar-based date selection, upcoming/overdue task visibility, and basic interactive UI.</li>
+            <li>Supported team coordination, meetings, task allocation, and conflict handling during the project.</li>
+          </ul>
+          <div class="project-links">
+            <a class="mini-link" href="https://github.com/Niss-chal/ToDo-List" target="_blank" rel="noopener">GitHub</a>
+            <a class="mini-link" href="https://youtu.be/TMcwhnOXP-g" target="_blank" rel="noopener">Watch Demo</a>
           </div>
         </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience" class="reveal">
+    <h2 class="section-title">Education & Working Style</h2>
+    <p class="section-subtitle">A simple summary of my academic path and the way I approach project work.</p>
+
+    <div class="timeline-grid">
+      <div class="card">
+        <h3>Education</h3>
+        <div class="timeline-item">
+          <strong>BSc (Hons) Computing with Artificial Intelligence</strong><br />
+          <span>Softwarica College of IT and E-Commerce | Coventry University | Currently Semester 4</span>
+        </div>
+        <div class="timeline-item">
+          <strong>Higher Secondary Education (+2 Science)</strong><br />
+          <span>Balmiki Education Foundation, Jhapa</span>
+        </div>
+        <div class="timeline-item">
+          <strong>Secondary Education (SEE)</strong><br />
+          <span>Bibhuti Vidya Mandir, Jhapa</span>
+        </div>
       </div>
+      <div class="card">
+        <h3>How I Work</h3>
+        <p>I prefer organized project execution: understand the requirement, create or follow a prototype, break work into tasks, develop feature by feature, test, debug, document, and improve through feedback.</p>
+        <br />
+        <p>I am especially interested in improving my backend development, APIs, object-oriented programming, Android development, and full-stack software engineering skills.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="socials" class="reveal">
+    <h2 class="section-title">Social Media & Links</h2>
+    <p class="section-subtitle">Find me on GitHub, LinkedIn, Instagram, YouTube, or check out my portfolio and CV.</p>
+    
+    <div class="social-grid">
+      <a class="card social-card" href="https://github.com/Niss-chal" target="_blank" rel="noopener">
+        <div class="icon">💻</div>
+        <h3>GitHub</h3>
+        <p>github.com/Niss-chal</p>
+      </a>
+      <a class="card social-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">💼</div>
+        <h3>LinkedIn</h3>
+        <!-- <p>Add your LinkedIn URL here</p> -->
+      </a>
+      <a class="card social-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">📸</div>
+        <h3>Instagram</h3>
+        <!-- <p>Add your Instagram handle here</p> -->
+      </a>
+      <a class="card social-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">▶️</div>
+        <h3>YouTube</h3>
+        <!-- <p>Add your channel or demos here</p> -->
+      </a>
     </div>
   </section>
 
   <section id="contact" class="reveal">
     <h2 class="section-title">Contact Me</h2>
-    <p class="section-subtitle">Have a project, question, or opportunity? Send a message.</p>
+    <p class="section-subtitle">For internships, fresher developer roles, collaborations, or project discussions, you can reach me here.</p>
 
-    <div class="contact-box">
-      <form id="contactForm">
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="email" id="email" placeholder="Your Email" required />
-        <textarea id="message" placeholder="Your Message" required></textarea>
-        <button class="btn btn-primary" type="submit">Send Message</button>
-      </form>
+    <div class="contact-wrap">
+      <div class="card contact-list">
+        <div class="contact-row"><span>Email</span><strong><a href="mailto:niachaldahal2062@gmail.com">niachaldahal2062@gmail.com</a></strong></div>
+        <!-- <div class="contact-row"><span>Phone</span><strong><a href="tel:+9779807931001">+977 9807931001</a></strong></div> -->
+        <div class="contact-row"><span>Location</span><strong>Kathmandu, Nepal</strong></div>
+        <div class="contact-row"><span>Portfolio</span><strong><a href="https://nischaldahal39.com.np" target="_blank" rel="noopener">nischaldahal39.com.np</a></strong></div>
+      </div>
+
+      <div class="card">
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="email" id="email" placeholder="Your Email" required />
+          <textarea id="message" placeholder="Your Message" required></textarea>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+        <p style="color: var(--muted); margin-top: 14px; font-size: 0.9rem;">Note: This demo form opens your email app.</p>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Nischal Dahal. All Rights Reserved.</p>
+    <p>© 2026 Nischal Dahal. Built with HTML, CSS, and JavaScript.</p>
   </footer>
-
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("show");
-      });
-    });
-
-    const revealElements = document.querySelectorAll(".reveal");
-
-    function revealOnScroll() {
-      revealElements.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const revealPoint = 120;
-
-        if (elementTop < windowHeight - revealPoint) {
-          element.classList.add("active");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
-
-    const contactForm = document.getElementById("contactForm");
-
-    contactForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      if (name && email && message) {
-        alert("Thank you, " + name + "! Your message has been received.");
-        contactForm.reset();
-      } else {
-        alert("Please fill out all fields.");
-      }
-    });
-  </script>
+  <script src="assets/js/script.js" defer></script>
 </body>
 </html>
